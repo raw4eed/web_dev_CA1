@@ -11,8 +11,8 @@ import java.sql.SQLException;
 public class register extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        PrintWriter out = resp.getWriter();
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws IOException{
+        PrintWriter out = resp.getWriter(); // html page for reg
         out.println("""
         <html><head><title>Register</title></head>
         <body>
@@ -25,46 +25,42 @@ public class register extends HttpServlet {
           </form>
           <p><a href='index.jsp'>Back to Login</a></p>
         </body></html>
-        """);
-    }
+        """);}
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String tag = req.getParameter("gamerTag");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)throws IOException{
+        String tag = req.getParameter("gamerTag"); // read values 
         String p1 = req.getParameter("password");
         String p2 = req.getParameter("confirm");
         PrintWriter out = resp.getWriter();
-
-        if (tag == null || p1 == null || p2 == null ||
-            tag.isEmpty() || p1.isEmpty() || p2.isEmpty()) {
+        // check if any fields empty 
+        if(tag == null || p1 == null || p2 == null || tag.isEmpty() || p1.isEmpty() || p2.isEmpty())
+        {
             out.println(message("Please fill all fields", "red", "register"));
             return;
         }
-
-        if (!p1.equals(p2)) {
+        //verify password match
+        if(!p1.equals(p2)) 
+        {
             out.println(message("Passwords do not match", "red", "register"));
             return;
         }
 
-        try {
-            if (playerDao.existsByTag(tag)) {
+        try 
+        { //check if tag exists in db
+            if(playerDao.existsByTag(tag)){
                 out.println(message("Gamer tag already exists", "red", "register"));
-                return;
-            }
-
-            if (playerDao.register(tag, p1)) {
-                out.println(message("Welcome, " + tag + ". You start with 500 credits.", "green", "index.jsp"));
-            } else {
+                return;}
+            // create new player with 500 cred (500 default in mysql db)
+            if (playerDao.register(tag, p1)){
+                out.println(message("Welcome, " + tag + ". You start with 500 credits.", "green", "index.jsp"));} 
+            else{
                 out.println(message("Registration failed.", "red", "register"));
             }
-        } catch (SQLException e) {
-            out.println(message("Database error: " + e.getMessage(), "red", "register"));
+        } 
+        catch (SQLException e) { out.println(message("Database error: " + e.getMessage(), "red", "register")); //error msg
         }
     }
-
-    private static String message(String text, String color, String back) {
-        return "<html><body>" +
-               "<p style='color:" + color + ";'>" + text + "</p>" +
-               "<p><a href='" + back + "'>Continue</a></p></body></html>";
-    }
+    // msg show helper
+    private static String message(String text, String color, String back){return "<html><body>" + "<p style='color:" + color + ";'>" + text + "</p>" + "<p><a href='" + back + "'>Continue</a></p></body></html>";}
 }

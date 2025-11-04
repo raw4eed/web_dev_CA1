@@ -12,23 +12,19 @@ public class dashboard extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        HttpSession s = req.getSession(false);
-        if (s == null || s.getAttribute("gamerTag") == null) {
+        HttpSession s = req.getSession(false);  //check if there is session
+        if(s == null ||s.getAttribute("gamerTag") == null){ //if not logged - sends to the main page
             resp.sendRedirect("index.jsp");
-            return;
-        }
+            return;}
 
-        String tag = (String) s.getAttribute("gamerTag");
+        String tag = (String) s.getAttribute("gamerTag"); //get tag from session 
         int credits = 0;
-
-        try {
+        try{ // ask db for balance 
             credits = playerDao.getCredits(tag);
-        } catch (SQLException e) {
-            throw new IOException(e);
-        }
+        } 
+        catch (SQLException e) {throw new IOException(e);} //error query
 
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = resp.getWriter();
+        PrintWriter out = resp.getWriter(); //html response 
         out.println("<html><body>");
         out.println("<h2>Welcome, " + tag + "</h2>");
         out.println("<p>Credits: " + credits + "</p>");
