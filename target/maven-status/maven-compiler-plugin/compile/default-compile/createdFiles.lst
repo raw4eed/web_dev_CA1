@@ -1,0 +1,8 @@
+com\example\gamingportal\servlets\dashboard.class
+com\example\gamingportal\servlets\logout.class
+com\example\gamingportal\player.class
+com\example\gamingportal\playerDao.class
+com\example\gamingportal\servlets\credit.class
+com\example\gamingportal\db.class
+com\example\gamingportal\servlets\register.class
+com\example\gamingportal\servlets\login.class

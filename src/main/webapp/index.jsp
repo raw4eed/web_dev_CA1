@@ -1,13 +1,19 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head><meta charset="UTF-8"><title>Gaming Portal</title></head>
+<head>
+    <title>Gaming Portal - Login</title>
+</head>
 <body>
-  <h2>Login</h2>
-  <form method="post" action="login">
-    Gamer Tag: <input type="text" name="gamerTag" required><br><br>
-    Password: <input type="password" name="password" required><br><br>
+
+<h2>Login</h2>
+
+<form method="post" action="login">
+    Gamer Tag: <input type="text" name="gamerTag"><br><br>
+    Password: <input type="password" name="password"><br><br>
     <input type="submit" value="Login">
-  </form>
-  <p>New player? <a href="register">Register here</a></p>
+</form>
+
+<p><a href="register">Register</a></p>
+
 </body>
 </html>
