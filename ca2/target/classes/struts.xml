@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <action name="home">
+            <result>/pages/home.jsp</result>
+        </action>
+
+        <action name="login" class="com.example.gamingportal.actions.login">
+            <result name="success">/pages/home.jsp</result>
+            <result name="failure">/pages/login.jsp</result>
+        </action>
+
+        <action name="logout" class="com.example.gamingportal.actions.logout">
+            <result name="success">/pages/home.jsp</result>
+        </action>
+
+        <action name="register" class="com.example.gamingportal.actions.register">
+            <result name="success">/pages/login.jsp</result>
+            <result name="failure">/pages/register.jsp</result>
+        </action>
+
+        <action name="viewprofile" class="com.example.gamingportal.actions.viewprofile">
+            <result name="success">/pages/profile.jsp</result>
+            <result name="failure">/pages/message.jsp</result>
+            <result name="login">/pages/login.jsp</result>
+        </action>
+
+        <action name="viewuser" class="com.example.gamingportal.actions.viewuser">
+            <result name="success">/pages/user.jsp</result>
+            <result name="failure">/pages/message.jsp</result>
+        </action>
+
+        <action name="listusers" class="com.example.gamingportal.actions.listusers">
+            <result name="success">/pages/users.jsp</result>
+            <result name="failure">/pages/message.jsp</result>
+        </action>
+
+        <action name="additem" class="com.example.gamingportal.actions.additem">
+           <result name="input">/pages/additem.jsp</result>
+            <result name="success">/pages/message.jsp</result>
+            <result name="failure">/pages/message.jsp</result>
+            <result name="login">/pages/login.jsp</result>
+        </action>
+
+
+        <action name="listitems" class="com.example.gamingportal.actions.listitems">
+            <result name="success">/pages/items.jsp</result>
+            <result name="failure">/pages/message.jsp</result>
+        </action>
+
+        <action name="bid" class="com.example.gamingportal.actions.bid">
+          <result name="input">/pages/bid.jsp</result>
+         <result name="success">/pages/message.jsp</result>
+         <result name="failure">/pages/message.jsp</result>
+         <result name="login">/pages/login.jsp</result>
+        </action>
+
+        <action name="mybids" class="com.example.gamingportal.actions.mybids">
+            <result name="success">/pages/mybids.jsp</result>
+            <result name="failure">/pages/message.jsp</result>
+            <result name="login">/pages/login.jsp</result>
+        </action>
+
+        <action name="itembids" class="com.example.gamingportal.actions.itembids">
+            <result name="success">/pages/itembids.jsp</result>
+            <result name="failure">/pages/message.jsp</result>
+        </action>
+
+    </package>
+
+</struts>
